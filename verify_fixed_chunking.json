@@ -1,0 +1,11 @@
+{
+  "model_name": "tiny",
+  "model_device": "cpu",
+  "enable_vad": false,
+  "enable_chunking": true,
+  "chunking_mode": "fixed",
+  "fixed_chunk_duration_s": 3.0,
+  "fixed_chunk_overlap_s": 0.75,
+  "short_audio_no_chunk_threshold_s": 0.1,
+  "enable_postprocessing": true
+}

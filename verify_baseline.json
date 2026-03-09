@@ -1,0 +1,9 @@
+{
+  "model_name": "tiny",
+  "model_device": "cpu",
+  "enable_vad": false,
+  "enable_chunking": false,
+  "enable_noise_reduction": false,
+  "enable_postprocessing": true,
+  "enable_confidence_filtering": false
+}

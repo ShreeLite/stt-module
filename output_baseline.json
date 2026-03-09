@@ -1,0 +1,72 @@
+{
+  "transcript": "Hi there, this is a sample voice recording created for speech synthesis testing. The quick brown fox jumps over the lazy dog. Just a fun way to include every letter of the alphabet. Numbers like 1, 2, 3 are spoken clearly. Let's see how well this voice captures tone, timing, and natural rhythm. This audio is provided by samplefiles.com.",
+  "confidence": 0.7728,
+  "metrics": {
+    "total_latency_ms": 3347.992,
+    "audio_duration_s": 26.3,
+    "number_of_chunks": 1,
+    "model_used": "tiny",
+    "overall_confidence": 0.7728,
+    "stage_latencies_ms": {
+      "preprocessing": 37.061,
+      "recognition": 3310.491,
+      "postprocessing": 0.061
+    }
+  },
+  "partial_transcripts": [
+    {
+      "chunk_index": 0,
+      "text": "Hi there, this is a sample voice recording created for speech synthesis testing. The quick brown fox jumps over the lazy dog. Just a fun way to include every letter of the alphabet. Numbers like 1, 2, 3 are spoken clearly. Let's see how well this voice captures tone, timing, and natural rhythm. This audio is provided by samplefiles.com.",
+      "confidence": 0.7727888219481279,
+      "start_s": 0.0,
+      "end_s": 26.3
+    }
+  ],
+  "stage_metrics": [
+    {
+      "stage_name": "preprocessing",
+      "latency_ms": 37.06100600538775,
+      "skipped": false
+    },
+    {
+      "stage_name": "noise_reduction",
+      "latency_ms": 0.0,
+      "skipped": true
+    },
+    {
+      "stage_name": "vad",
+      "latency_ms": 0.0,
+      "skipped": true
+    },
+    {
+      "stage_name": "chunking",
+      "latency_ms": 0.0,
+      "skipped": true
+    },
+    {
+      "stage_name": "recognition",
+      "latency_ms": 3310.4914540308528,
+      "skipped": false
+    },
+    {
+      "stage_name": "confidence_filter",
+      "latency_ms": 0.0,
+      "skipped": true
+    },
+    {
+      "stage_name": "postprocessing",
+      "latency_ms": 0.061023980379104614,
+      "skipped": false
+    }
+  ],
+  "debug": {
+    "vad_segments": [],
+    "chunk_boundaries": [
+      {
+        "start_s": 0.0,
+        "end_s": 26.3
+      }
+    ],
+    "waveform_envelope": []
+  }
+}

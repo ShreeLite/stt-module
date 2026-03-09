@@ -1,0 +1,9 @@
+{
+  "model_name": "tiny",
+  "model_device": "cpu",
+  "enable_vad": true,
+  "enable_chunking": true,
+  "chunking_mode": "vad",
+  "enable_postprocessing": true,
+  "enable_debug_visualization": true
+}
