@@ -1,0 +1,8 @@
+{
+  "model_name": "tiny",
+  "chunking_policy": "auto",
+  "auto_chunking_duration_threshold_s": 25.0,
+  "enable_vad": true,
+  "enable_silence_detection": true,
+  "enable_debug_visualization": true
+}

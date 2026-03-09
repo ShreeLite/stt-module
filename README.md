@@ -39,6 +39,14 @@ It also supports experimentation workflows:
 pip install -e .
 ```
 
+Migration-friendly imports:
+
+```python
+from stt_module import STTService
+# or compatibility alias
+from stt import STTService
+```
+
 ## Usage
 
 ```bash
@@ -73,6 +81,18 @@ Generate plots:
 
 ```bash
 stt-module visualize --input experiment_results.json --output-dir plots --kind all
+```
+
+Dataset-level evaluation:
+
+```bash
+stt-module evaluate-dataset --audio-dir ./dataset --mapping ./mapping.json --output dataset_eval.json
+```
+
+Environment verification:
+
+```bash
+python scripts/verify_stt_environment.py --audio voice-sample.wav --model tiny --device cpu
 ```
 
 ## Example Config
@@ -158,6 +178,23 @@ experiments:
 - `stage_latency_breakdown.png`
 - `chunk_boundaries.png`
 - `config_comparison.png`
+
+## Backend Facade and Endpoint References
+
+- Stable backend facade: `stt_module/integration/backend_api.py`
+- Generic endpoint examples: `stt_module/integration/backend_examples.py`
+
+## CI Testing Profiles
+
+- Fast profile: `make test-fast`
+- Full profile: `make test-full`
+
+Fast is intended for frequent commit checks; full includes heavier integration coverage.
+
+## Handoff Documentation
+
+- Architecture: `docs/STT_ARCHITECTURE.md`
+- Integration/API contract: `docs/STT_INTEGRATION_GUIDE.md`
 
 ## Project Structure
 

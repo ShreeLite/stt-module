@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any, Dict
 
 from stt_module.compare import compare_configs
+from stt_module.evaluation.dataset import evaluate_dataset
 from stt_module.evaluation.metrics import compute_wer_cer
 from stt_module.experiments.runner import run_experiments_from_spec
 from stt_module.service import STTService
@@ -43,6 +44,12 @@ def _build_parser() -> argparse.ArgumentParser:
     evaluate = sub.add_parser("evaluate", help="Compute WER/CER from reference and hypothesis text")
     evaluate.add_argument("--reference", required=True, help="Reference transcript")
     evaluate.add_argument("--hypothesis", required=True, help="Hypothesis transcript")
+
+    dataset_eval = sub.add_parser("evaluate-dataset", help="Evaluate WER/CER for a dataset")
+    dataset_eval.add_argument("--audio-dir", required=True, help="Directory containing dataset audio files")
+    dataset_eval.add_argument("--mapping", required=True, help="JSON/YAML/CSV transcript mapping file")
+    dataset_eval.add_argument("--config", help="JSON file with config overrides")
+    dataset_eval.add_argument("--output", help="Write results JSON to this path")
 
     visualize = sub.add_parser("visualize", help="Generate plots from result files")
     visualize.add_argument("--input", required=True, help="Input JSON result file")
@@ -98,6 +105,16 @@ def main() -> None:
 
     if args.command == "evaluate":
         output = compute_wer_cer(reference=args.reference, hypothesis=args.hypothesis)
+        print(json.dumps(output, indent=2))
+        return
+
+    if args.command == "evaluate-dataset":
+        output = evaluate_dataset(
+            audio_dir=args.audio_dir,
+            transcript_map_file=args.mapping,
+            config_overrides=_load_overrides(args.config),
+            output_file=args.output,
+        )
         print(json.dumps(output, indent=2))
         return
 

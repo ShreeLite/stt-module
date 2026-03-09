@@ -1,0 +1,15 @@
+audio_input: sample-audio.wav
+output_file: sample_experiment_results.json
+print_table: false
+ground_truths:
+  sample-audio.wav: "Hi there, this is a sample voice recording created for speech synthesis testing. The quick brown fox jumps over the lazy dog. Just a fun way to include every letter of the alphabet. Numbers like 1, 2, 3 are spoken clearly. Let\"s see how well this voice captures tone, timing, and natural rhythm. This audio is provided by samplefiles.com."
+experiments:
+  - name: baseline
+    overrides:
+      model_name: tiny
+      enable_vad: false
+      enable_chunking: false
+  - name: auto
+    overrides:
+      model_name: tiny
+      chunking_policy: auto

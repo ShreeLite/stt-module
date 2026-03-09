@@ -1,0 +1,59 @@
+{
+  "results": [
+    {
+      "audio_file": "sample-audio.wav",
+      "audio_name": "sample-audio.wav",
+      "experiment": "baseline",
+      "config": {
+        "model_name": "tiny",
+        "enable_vad": false,
+        "enable_chunking": false
+      },
+      "transcript": "Hi there, this is a sample voice recording created for speech synthesis testing. The quick brown fox jumps over the lazy dog. Just a fun way to include every letter of the alphabet. Numbers like 1, 2, 3 are spoken clearly. Let's see how well this voice captures tone, timing, and natural rhythm. This audio is provided by samplefiles.com.",
+      "confidence": 0.7728,
+      "latency_ms": 3346.705,
+      "chunk_count": 1,
+      "chunking_strategy": "none",
+      "no_speech_detected": false,
+      "stage_latencies_ms": {
+        "preprocessing": 38.226,
+        "recognition": 3307.171,
+        "postprocessing": 0.057
+      },
+      "model_used": "tiny",
+      "wer": 0.01694915254237288,
+      "cer": 0.0029585798816568047
+    },
+    {
+      "audio_file": "sample-audio.wav",
+      "audio_name": "sample-audio.wav",
+      "experiment": "auto",
+      "config": {
+        "model_name": "tiny",
+        "chunking_policy": "auto"
+      },
+      "transcript": "Hi there, this is a sample voice recording created for speech synthesis testing. The quick brown fox jumps over the lazy dog. Just a fun way to include every letter of the alphabet. Numbers like 1, 2, 3 are spoken clearly. Let's see how well this voice captures tone, timing, and natural rhythm. This audio is provided by samplefiles.com.",
+      "confidence": 0.7728,
+      "latency_ms": 1939.661,
+      "chunk_count": 1,
+      "chunking_strategy": "none",
+      "no_speech_detected": false,
+      "stage_latencies_ms": {
+        "preprocessing": 26.766,
+        "vad": 28.86,
+        "recognition": 1882.974,
+        "postprocessing": 0.072
+      },
+      "model_used": "tiny",
+      "wer": 0.01694915254237288,
+      "cer": 0.0029585798816568047
+    }
+  ],
+  "summary": {
+    "count": 2,
+    "avg_latency_ms": 2643.183,
+    "avg_confidence": 0.7728,
+    "avg_wer": 0.0169,
+    "avg_cer": 0.003
+  }
+}

@@ -1,0 +1,286 @@
+{
+  "pipeline_a": {
+    "transcript": "Hi there, this is a sample voice recording created for speech synthesis testing. The quick brown fox jumps over the lazy dog. Just a fun way to include every letter of the alphabet. Numbers like 1, 2, 3 are spoken clearly. Let's see how well this voice captures tone, timing, and natural rhythm. This audio is provided by samplefiles.com.",
+    "latency_ms": 3536.538,
+    "confidence": 0.7728,
+    "number_of_chunks": 1,
+    "full_result": {
+      "transcript": "Hi there, this is a sample voice recording created for speech synthesis testing. The quick brown fox jumps over the lazy dog. Just a fun way to include every letter of the alphabet. Numbers like 1, 2, 3 are spoken clearly. Let's see how well this voice captures tone, timing, and natural rhythm. This audio is provided by samplefiles.com.",
+      "confidence": 0.7728,
+      "metrics": {
+        "total_latency_ms": 3536.538,
+        "audio_duration_s": 26.3,
+        "number_of_chunks": 1,
+        "model_used": "tiny",
+        "overall_confidence": 0.7728,
+        "chunking_strategy_used": "none",
+        "no_speech_detected": false,
+        "audio_rms": 0.066479,
+        "stage_latencies_ms": {
+          "preprocessing": 46.779,
+          "recognition": 3487.378,
+          "postprocessing": 0.074
+        }
+      },
+      "partial_transcripts": [
+        {
+          "chunk_index": 0,
+          "text": "Hi there, this is a sample voice recording created for speech synthesis testing. The quick brown fox jumps over the lazy dog. Just a fun way to include every letter of the alphabet. Numbers like 1, 2, 3 are spoken clearly. Let's see how well this voice captures tone, timing, and natural rhythm. This audio is provided by samplefiles.com.",
+          "confidence": 0.7727888219481279,
+          "start_s": 0.0,
+          "end_s": 26.3
+        }
+      ],
+      "stage_metrics": [
+        {
+          "stage_name": "preprocessing",
+          "latency_ms": 46.77882103715092,
+          "skipped": false
+        },
+        {
+          "stage_name": "noise_reduction",
+          "latency_ms": 0.0,
+          "skipped": true
+        },
+        {
+          "stage_name": "vad",
+          "latency_ms": 0.0,
+          "skipped": true
+        },
+        {
+          "stage_name": "chunking",
+          "latency_ms": 0.0,
+          "skipped": true
+        },
+        {
+          "stage_name": "recognition",
+          "latency_ms": 3487.3781710048206,
+          "skipped": false
+        },
+        {
+          "stage_name": "confidence_filter",
+          "latency_ms": 0.0,
+          "skipped": true
+        },
+        {
+          "stage_name": "postprocessing",
+          "latency_ms": 0.07380195893347263,
+          "skipped": false
+        }
+      ],
+      "debug": {
+        "vad_segments": [],
+        "chunk_boundaries": [
+          {
+            "start_s": 0.0,
+            "end_s": 26.3
+          }
+        ],
+        "waveform_envelope": []
+      }
+    }
+  },
+  "pipeline_b": {
+    "transcript": "Hi there, this is a sample voice recording created for speech synthesis testing. The Quit Brown Fox jumps over the lazy dog. just a fun way to include every letter of the alphabet. Numbers like 1, 2, 3 are spoken clearly. Let's see how well this voice captures tone, timing, and natural rhythm. This audio is provided by samplefiles.com.",
+    "latency_ms": 3421.562,
+    "confidence": 0.7596,
+    "number_of_chunks": 3,
+    "full_result": {
+      "transcript": "Hi there, this is a sample voice recording created for speech synthesis testing. The Quit Brown Fox jumps over the lazy dog. just a fun way to include every letter of the alphabet. Numbers like 1, 2, 3 are spoken clearly. Let's see how well this voice captures tone, timing, and natural rhythm. This audio is provided by samplefiles.com.",
+      "confidence": 0.7596,
+      "metrics": {
+        "total_latency_ms": 3421.562,
+        "audio_duration_s": 26.3,
+        "number_of_chunks": 3,
+        "model_used": "tiny",
+        "overall_confidence": 0.7596,
+        "chunking_strategy_used": "vad",
+        "no_speech_detected": false,
+        "audio_rms": 0.066479,
+        "stage_latencies_ms": {
+          "preprocessing": 28.913,
+          "vad": 27.139,
+          "chunking": 0.029,
+          "recognition": 3364.172,
+          "postprocessing": 0.056
+        }
+      },
+      "partial_transcripts": [
+        {
+          "chunk_index": 0,
+          "text": "Hi there, this is a sample voice recording created for speech synthesis testing. The Quit Brown Fox jumps over the lazy dog.",
+          "confidence": 0.7373013898989403,
+          "start_s": 0.0,
+          "end_s": 8.7
+        },
+        {
+          "chunk_index": 1,
+          "text": "just a fun way to include every letter of the alphabet.",
+          "confidence": 0.7847981069506134,
+          "start_s": 9.03,
+          "end_s": 12.48
+        },
+        {
+          "chunk_index": 2,
+          "text": "Numbers like 1, 2, 3 are spoken clearly. Let's see how well this voice captures tone, timing, and natural rhythm. This audio is provided by samplefiles.com.",
+          "confidence": 0.7565758783656641,
+          "start_s": 12.72,
+          "end_s": 26.19
+        }
+      ],
+      "stage_metrics": [
+        {
+          "stage_name": "preprocessing",
+          "latency_ms": 28.912900015711784,
+          "skipped": false
+        },
+        {
+          "stage_name": "noise_reduction",
+          "latency_ms": 0.0,
+          "skipped": true
+        },
+        {
+          "stage_name": "vad",
+          "latency_ms": 27.138704026583582,
+          "skipped": false
+        },
+        {
+          "stage_name": "chunking",
+          "latency_ms": 0.028515001758933067,
+          "skipped": false
+        },
+        {
+          "stage_name": "recognition",
+          "latency_ms": 3364.172352012247,
+          "skipped": false
+        },
+        {
+          "stage_name": "confidence_filter",
+          "latency_ms": 0.0,
+          "skipped": true
+        },
+        {
+          "stage_name": "postprocessing",
+          "latency_ms": 0.056128017604351044,
+          "skipped": false
+        }
+      ],
+      "debug": {
+        "vad_segments": [
+          {
+            "start_s": 0.0,
+            "end_s": 5.13
+          },
+          {
+            "start_s": 5.46,
+            "end_s": 8.7
+          },
+          {
+            "start_s": 9.03,
+            "end_s": 12.48
+          },
+          {
+            "start_s": 12.72,
+            "end_s": 26.19
+          }
+        ],
+        "chunk_boundaries": [
+          {
+            "start_s": 0.0,
+            "end_s": 8.7
+          },
+          {
+            "start_s": 9.03,
+            "end_s": 12.48
+          },
+          {
+            "start_s": 12.72,
+            "end_s": 26.19
+          }
+        ],
+        "waveform_envelope": [
+          0.34498,
+          0.22739,
+          0.22431,
+          0.42983,
+          0.24195,
+          0.20966,
+          0.24545,
+          0.20173,
+          0.21994,
+          0.26567,
+          0.20893,
+          0.28995,
+          0.22718,
+          0.24313,
+          0.15135,
+          0.00159,
+          0.43605,
+          0.34944,
+          0.66332,
+          0.49314,
+          0.25962,
+          0.59669,
+          0.35812,
+          0.2953,
+          0.34214,
+          0.0382,
+          0.00089,
+          0.37896,
+          0.24999,
+          0.38757,
+          0.191,
+          0.20957,
+          0.39454,
+          0.27797,
+          0.32105,
+          0.33278,
+          0.21677,
+          0.00278,
+          0.47625,
+          0.53954,
+          0.13561,
+          0.45025,
+          0.48212,
+          0.37582,
+          0.35035,
+          0.28222,
+          0.08302,
+          0.44169,
+          0.32845,
+          0.25249,
+          0.07294,
+          0.00127,
+          0.37122,
+          0.21218,
+          0.34419,
+          0.30586,
+          0.30244,
+          0.34002,
+          0.17433,
+          0.44109,
+          0.16121,
+          0.42774,
+          0.31344,
+          0.40708,
+          0.45157,
+          0.30348,
+          0.29085,
+          0.00076,
+          0.39092,
+          0.43149,
+          0.23914,
+          0.27261,
+          0.50329,
+          0.38449,
+          0.40025,
+          0.49979,
+          0.32032,
+          0.39052,
+          0.11772,
+          0.00135
+        ]
+      }
+    }
+  }
+}

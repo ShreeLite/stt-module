@@ -1,0 +1,7 @@
+{
+  "plots": [
+    "sample_plots/stage_latency_breakdown.png",
+    "sample_plots/chunk_boundaries.png",
+    "sample_plots/config_comparison.png"
+  ]
+}
