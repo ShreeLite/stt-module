@@ -10,6 +10,23 @@ class Chunker:
     def full_audio_chunk(self, audio: AudioData) -> Chunk:
         return self._make_chunk(0, 0.0, audio.duration_s, audio)
 
+    def create_vad_chunks(
+        self,
+        audio: AudioData,
+        config: STTConfig,
+        vad_segments: list[SpeechSegment],
+    ) -> list[Chunk]:
+        if audio.duration_s <= config.short_audio_no_chunk_threshold_s:
+            return [self.full_audio_chunk(audio)]
+        if not vad_segments:
+            return []
+        return self._vad_chunks(audio, config, vad_segments)
+
+    def create_fixed_chunks(self, audio: AudioData, config: STTConfig) -> list[Chunk]:
+        if audio.duration_s <= config.short_audio_no_chunk_threshold_s:
+            return [self.full_audio_chunk(audio)]
+        return self._fixed_chunks(audio, config)
+
     def create_chunks(
         self,
         audio: AudioData,
@@ -17,7 +34,7 @@ class Chunker:
         vad_segments: list[SpeechSegment] | None,
     ) -> list[Chunk]:
         if audio.duration_s <= config.short_audio_no_chunk_threshold_s:
-            return [self._make_chunk(0, 0.0, audio.duration_s, audio)]
+            return [self.full_audio_chunk(audio)]
 
         if config.chunking_mode == "vad":
             if not vad_segments:

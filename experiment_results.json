@@ -1,0 +1,53 @@
+{
+  "results": [
+    {
+      "audio_file": "voice-sample.wav",
+      "audio_name": "voice-sample.wav",
+      "experiment": "baseline",
+      "config": {
+        "model_name": "tiny",
+        "enable_vad": false,
+        "enable_chunking": false
+      },
+      "transcript": "Hi there, this is a sample voice recording created for speech synthesis testing. The quick brown fox jumps over the lazy dog. Just a fun way to include every letter of the alphabet. Numbers like 1, 2, 3 are spoken clearly. Let's see how well this voice captures tone, timing, and natural rhythm. This audio is provided by samplefiles.com.",
+      "confidence": 0.7728,
+      "latency_ms": 3426.842,
+      "chunk_count": 1,
+      "chunking_strategy": "none",
+      "no_speech_detected": false,
+      "stage_latencies_ms": {
+        "preprocessing": 44.919,
+        "recognition": 3379.753,
+        "postprocessing": 0.213
+      },
+      "model_used": "tiny"
+    },
+    {
+      "audio_file": "voice-sample.wav",
+      "audio_name": "voice-sample.wav",
+      "experiment": "auto",
+      "config": {
+        "model_name": "tiny",
+        "chunking_policy": "auto"
+      },
+      "transcript": "Hi there, this is a sample voice recording created for speech synthesis testing. The quick brown fox jumps over the lazy dog. Just a fun way to include every letter of the alphabet. Numbers like 1, 2, 3 are spoken clearly. Let's see how well this voice captures tone, timing, and natural rhythm. This audio is provided by samplefiles.com.",
+      "confidence": 0.7728,
+      "latency_ms": 2052.385,
+      "chunk_count": 1,
+      "chunking_strategy": "none",
+      "no_speech_detected": false,
+      "stage_latencies_ms": {
+        "preprocessing": 29.595,
+        "vad": 29.985,
+        "recognition": 1991.691,
+        "postprocessing": 0.061
+      },
+      "model_used": "tiny"
+    }
+  ],
+  "summary": {
+    "count": 2,
+    "avg_latency_ms": 2739.614,
+    "avg_confidence": 0.7728
+  }
+}

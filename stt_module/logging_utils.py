@@ -44,3 +44,15 @@ def log_pipeline_end(
         chunk_count,
         confidence,
     )
+
+
+def log_chunking_strategy(logger: logging.Logger, strategy: str, reason: str) -> None:
+    logger.info("chunking_strategy strategy=%s reason=%s", strategy, reason)
+
+
+def log_silence_decision(logger: logging.Logger, no_speech_detected: bool, audio_rms: float) -> None:
+    logger.info(
+        "silence_detection no_speech=%s audio_rms=%.6f",
+        no_speech_detected,
+        audio_rms,
+    )

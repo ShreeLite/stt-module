@@ -1,0 +1,13 @@
+audio_input: voice-sample.wav
+output_file: experiment_results.json
+print_table: true
+experiments:
+  - name: baseline
+    overrides:
+      model_name: tiny
+      enable_vad: false
+      enable_chunking: false
+  - name: auto
+    overrides:
+      model_name: tiny
+      chunking_policy: auto

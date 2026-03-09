@@ -39,6 +39,9 @@ class STTService:
                 "number_of_chunks": result.metrics.number_of_chunks,
                 "model_used": result.metrics.model_used,
                 "overall_confidence": round(result.metrics.overall_confidence, 4),
+                "chunking_strategy_used": result.metrics.chunking_strategy_used,
+                "no_speech_detected": result.metrics.no_speech_detected,
+                "audio_rms": round(result.metrics.audio_rms, 6),
                 "stage_latencies_ms": {
                     k: round(v, 3) for k, v in result.metrics.stage_latencies_ms.items()
                 },

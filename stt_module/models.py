@@ -65,6 +65,9 @@ class PipelineMetrics:
     number_of_chunks: int
     model_used: str
     overall_confidence: float
+    chunking_strategy_used: str = "none"
+    no_speech_detected: bool = False
+    audio_rms: float = 0.0
     stage_latencies_ms: Dict[str, float] = field(default_factory=dict)
 
 

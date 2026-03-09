@@ -8,6 +8,13 @@ This implementation is production-oriented and uses real components:
 - voice activity detection via `webrtcvad`
 - speech recognition via `faster-whisper`
 
+It also supports experimentation workflows:
+- automatic chunking strategy selection for short vs long audio
+- silence/no-speech detection before inference
+- batch experiment runs with JSON/YAML specs
+- WER/CER evaluation via `jiwer`
+- visualization utilities for latency, chunk boundaries, and config comparison
+
 ## Features
 
 - Modular pipeline stages:
@@ -19,10 +26,12 @@ This implementation is production-oriented and uses real components:
   - optional transcript post-processing
   - optional confidence filtering
 - Runtime configuration changes per request (no restart required)
+- Manual or automatic chunking policy (`manual` / `auto`)
 - Streaming-style chunk transcription with partial outputs
 - Stage-level and total latency metrics
 - Comparison mode for two configs on the same audio
 - Logging of enabled modules, configuration, model, latency, and chunk counts
+- Frontend payload adapter for UI integration
 
 ## Install
 
@@ -33,19 +42,37 @@ pip install -e .
 ## Usage
 
 ```bash
-stt-module path/to/audio.wav
+stt-module transcribe path/to/audio.wav
 ```
 
 With config overrides:
 
 ```bash
-stt-module path/to/audio.wav --config config_a.json
+stt-module transcribe path/to/audio.wav --config config_a.json
 ```
 
 Comparison mode:
 
 ```bash
-stt-module path/to/audio.wav --config config_a.json --compare-config config_b.json
+stt-module compare path/to/audio.wav --config config_a.json --compare-config config_b.json
+```
+
+Batch experiments from spec:
+
+```bash
+stt-module experiments --spec experiments.yaml
+```
+
+WER/CER evaluation:
+
+```bash
+stt-module evaluate --reference "hello world" --hypothesis "hello ward"
+```
+
+Generate plots:
+
+```bash
+stt-module visualize --input experiment_results.json --output-dir plots --kind all
 ```
 
 ## Example Config
@@ -54,10 +81,9 @@ stt-module path/to/audio.wav --config config_a.json --compare-config config_b.js
 {
   "enable_noise_reduction": true,
   "enable_vad": true,
-  "enable_chunking": true,
-  "chunking_mode": "vad",
+  "chunking_policy": "auto",
   "vad_sensitivity": 0.62,
-  "model_name": "simple",
+  "model_name": "small",
   "enable_debug_visualization": true,
   "confidence_threshold": 0.5
 }
@@ -73,6 +99,9 @@ stt-module path/to/audio.wav --config config_a.json --compare-config config_b.js
   - `number_of_chunks`
   - `model_used`
   - `overall_confidence`
+  - `chunking_strategy_used`
+  - `no_speech_detected`
+  - `audio_rms`
   - `stage_latencies_ms`
 - `partial_transcripts`
 - `stage_metrics`
@@ -86,6 +115,57 @@ stt-module path/to/audio.wav --config config_a.json --compare-config config_b.js
 - The recognizer uses Faster-Whisper models (default: `small`).
 - Use VAD-based chunking when possible to preserve speech boundaries and reduce context loss.
 - Fixed chunking supports overlap to preserve context across chunk boundaries.
+
+## Automatic Chunking Behavior
+
+- `chunking_policy="manual"`: honors `enable_chunking` and `chunking_mode`.
+- `chunking_policy="auto"`:
+  - short audio (`duration < auto_chunking_duration_threshold_s`) => no chunking
+  - long audio with VAD speech segments => VAD chunking
+  - long audio without usable VAD => fixed chunking fallback
+
+The selected strategy is stored in `metrics.chunking_strategy_used`.
+
+## Silence Detection
+
+- If `enable_silence_detection=true`, the pipeline evaluates low-energy/no-speech conditions.
+- When no meaningful speech is detected, recognition is skipped and output includes:
+  - `metrics.no_speech_detected=true`
+  - `metrics.audio_rms=<value>`
+
+## Experiment Spec (JSON/YAML)
+
+```yaml
+audio_input: voice-sample.wav
+output_file: experiment_results.json
+print_table: true
+ground_truths:
+  voice-sample.wav: "Hi there, this is a sample voice recording ..."
+experiments:
+  - name: baseline
+    overrides:
+      model_name: tiny
+      enable_vad: false
+      enable_chunking: false
+  - name: auto_chunking
+    overrides:
+      model_name: tiny
+      chunking_policy: auto
+```
+
+## Visualization Outputs
+
+- `stage_latency_breakdown.png`
+- `chunk_boundaries.png`
+- `config_comparison.png`
+
+## Project Structure
+
+- `stt_module/pipeline.py`: orchestration and robustness logic
+- `stt_module/experiments/runner.py`: batch experimentation engine
+- `stt_module/evaluation/metrics.py`: WER/CER metrics
+- `stt_module/visualization/plots.py`: charts and diagnostics
+- `stt_module/integration/frontend.py`: frontend-friendly payload adapter
 
 ## Production Guidance
 
